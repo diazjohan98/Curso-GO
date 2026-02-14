@@ -1,0 +1,37 @@
+package cmd
+
+import (
+    "fmt"
+    "log"
+    "os"
+
+    "github.com/go-gota/gota/dataframe"
+    "github.com/spf13/cobra"
+)
+
+var archivo string
+
+var contarCmd = &cobra.Command{
+    Use:   "contar",
+    Short: "Contar filas de un archivo CSV",
+    Run: func(cmd *cobra.Command, args []string) {
+        if archivo == "" {
+            log.Fatal("Debes proporcionar la ruta del archivo con --archivo")
+        }
+
+        f, err := os.Open(archivo)
+        if err != nil {
+            log.Fatal(err)
+        }
+        defer f.Close()
+
+        df := dataframe.ReadCSV(f)
+        fmt.Printf("[%s] Filas: %d\n", archivo, df.Nrow())
+    },
+}
+
+func init() {
+    rootCmd.AddCommand(contarCmd)
+
+    contarCmd.Flags().StringVarP(&archivo, "archivo", "a", "", "Ruta del archivo CSV")
+}
