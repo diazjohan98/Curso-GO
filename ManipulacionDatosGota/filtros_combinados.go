@@ -59,6 +59,15 @@ func main() {
 	fmt.Println("\nFiltrado: Edad ≥ 40 o ciudad = Barranquilla ")
 	fmt.Println(dfOR)
 
+	dfIn := df.Filter(dataframe.F{
+		Colname:    "ciudad",
+		Comparator: series.In,
+		Comparando: []string{"Cali", "Medellín"},
+	})
+
+	fmt.Println("\nFiltrado: ciudad = Cali o Medellín (IN)")
+	fmt.Println(dfIn)
+
 }
 
 func distincRows(df dataframe.DataFrame) dataframe.DataFrame {
