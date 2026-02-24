@@ -61,3 +61,5 @@ func main() {
 	log.Println("Grafico guardado como edad_ingresos.png")
 
 }
+
+// * png, svg,
