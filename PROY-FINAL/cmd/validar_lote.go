@@ -91,7 +91,7 @@ var validarLoteCmd = &cobra.Command{
 
 			//* insertar en la base de datos
 
-			_, err = db.Exec(`INSERT INTO usuarios_limpios (nombre, apellido, correo, genero, ip
+			_, err = db.Exec(`INSERT INTO usuarios_limpios (nombre, apellido, correo, genero, ip)
 			VALUES (?, ?, ?, ?, ?)`,
 				fila[1], fila[2], fila[3], fila[4], fila[5])
 			if err != nil {
